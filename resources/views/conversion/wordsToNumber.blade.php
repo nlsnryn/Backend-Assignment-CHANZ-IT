@@ -18,12 +18,12 @@
     @empty($result->output)
       <input name="output" class="text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" disabled/>
     @else
-      <input name="output" class="text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="{{ $result->output}}"/>
+      <input name="output" class="text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="{{ $result->output}}" disabled/>
     @endempty
 
     @empty($result->converted) 
     @else
-      <input name="convertedOutput" class="block w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="If we convert P{{ $result->output }} to USD, the amount is ${{ number_format($result->converted->conversion_result, 2)}}"/>
+      <input name="convertedOutput" class="block w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="If we convert P{{ number_format($result->output, 2)  }} to USD, the amount is ${{ number_format($result->converted->conversion_result, 2)}}"/>
     @endempty
     <button id="toNumberConversion" class="underline text-sm mt-2 hover:text-red-700 block">Want to convert number to words?</button>
 </div>

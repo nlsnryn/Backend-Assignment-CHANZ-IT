@@ -6,6 +6,7 @@ use SplStack;
 use stdClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Stringy\StaticStringy;
 
 class ConversionController extends Controller
 {
@@ -121,7 +122,6 @@ class ConversionController extends Controller
         $input = $request->input('input');
         function wordsToNumber($data)
         {
-            // Replace all number words with an equivalent numeric value
             $data = strtr(
                 $data,
                 array(
@@ -186,27 +186,20 @@ class ConversionController extends Controller
                 if (!$stack->isEmpty()) {
                     // We're part way through a phrase
                     if ($stack->top() > $part) {
-                        // Decreasing step, e.g. from hundreds to ones
                         if ($last >= 1000) {
-                            // If we drop from more than 1000 then we've finished the phrase
                             $sum += $stack->pop();
-                            // This is the first element of a new phrase
+
                             $stack->push($part);
                         } else {
-                            // Drop down from less than 1000, just addition
-                            // e.g. "seventy one" -> "70 1" -> "70 + 1"
                             $stack->push($stack->pop() + $part);
                         }
                     } else {
-                        // Increasing step, e.g ones to hundreds
                         $stack->push($stack->pop() * $part);
                     }
                 } else {
-                    // This is the first element of a new phrase
                     $stack->push($part);
                 }
 
-                // Store the last processed part
                 $last = $part;
             }
 

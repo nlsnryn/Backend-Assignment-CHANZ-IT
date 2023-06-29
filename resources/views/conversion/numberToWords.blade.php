@@ -27,14 +27,14 @@
   @empty($result->output)
     <input name="output" class="text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" disabled/>
   @else
-    <input name="output" class="w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="{{ $result->output }}"/>
+    <input name="output" class="w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="{{ $result->output }}" disabled/>
   @endempty
     
   {{-- PHP TO USD CONVERSION --}}
 
   @empty($result->converted)
   @else
-    <input name="convertedOutput" class="block w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text"value="If we convert P{{ $result->input }} to USD, the amount is ${{ number_format($result->converted->conversion_result, 2) }}"/>
+    <input name="convertedOutput" class="block w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text"value="If we convert P{{ number_format($result->input, 2)  }} to USD, the amount is ${{ number_format($result->converted->conversion_result, 2) }}"/>
   @endempty
     
   <button id="toWordsConversion" class="block underline text-sm mt-2 hover:text-red-700">Want to convert words to number?</button>
