@@ -3,7 +3,7 @@
 @section('title', 'Word To Number Conversion')
 
 @section('content')
-<div class="text-white max-w-xl">
+<div class="text-white w-full">
   <h1 class="text-4xl mb-5 -mt-32">Convert your words to number</h1>
 
  {{-- WORDS TO NUMBER FORM --}}
@@ -33,9 +33,9 @@
 
     @empty($result->converted) 
     @else
-      <input name="convertedOutput" class="block w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="If we convert P{{ number_format($result->output, 2)  }} to USD, the amount is ${{ number_format($result->converted->conversion_result, 2)}}"/>
+      <input name="convertedOutput" class="block w-full text-gray-800 bg-gray-300 font-semibold text-lg py-1 px-5 rounded mt-5" type="text" value="If we convert P{{ number_format($result->output, 2)  }} to USD, the amount is ${{ number_format($result->converted->conversion_result, 2)}}" disabled/>
     @endempty
-    
+
     <button id="toNumberConversion" class="underline text-sm mt-2 hover:text-red-700 block">Want to convert number to words?</button>
 </div>
 
